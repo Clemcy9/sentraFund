@@ -19,7 +19,7 @@ if not DEBUG:    # Tell Django to copy static assets into a path called `staticf
 
 
 DATABASES = {
-    'default': {
+    'default-style': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'wagtail_tenant',
         'USER': 'aboy',
@@ -31,7 +31,7 @@ DATABASES = {
         }
     },
 
-    'defaultxxx': dj_database_url.parse(
+    'default': dj_database_url.parse(
         os.getenv('DATABASE_URL'),
     )
 }
