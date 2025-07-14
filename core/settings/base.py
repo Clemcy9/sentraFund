@@ -178,7 +178,7 @@ ACCOUNT_AUTHENTICATION_METHOD = 'username_email' #username, email, username_emai
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_USERNAME_REQUIRED = False
 # ACCOUNT_USER_MODEL_USERNAME_FIELD =None
-ACCOUNT_EMAIL_VERIFICATION = 'mandatory' #optional or mandatory
+ACCOUNT_EMAIL_VERIFICATION = 'none' #optional, none or mandatory
 ACCOUNT_UNIQUE_EMAIL = True
 
 ACCOUNT_FORMS = {

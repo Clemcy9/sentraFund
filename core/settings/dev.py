@@ -19,6 +19,6 @@ except ImportError:
 
 DATABASES = {
     # 'default': dj_database_url.config(default=os.getenv('DATABASE_LOCAL')) #this default to "DATABASE_URL" even when u explicitly choose otherwise, only works if url doesn't exist
-    'default': dj_database_url.parse(os.getenv('DATABASE_EXTERNAL_RENDER')),
-    'default_local': dj_database_url.parse(os.getenv('DATABASE_LOCAL')),
+    'default_render': dj_database_url.parse(os.getenv('DATABASE_EXTERNAL_RENDER')),
+    'default': dj_database_url.parse(os.getenv('DATABASE_LOCAL')),
 }
