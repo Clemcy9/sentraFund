@@ -227,6 +227,11 @@ REST_FRAMEWORK = {
     ),
     'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
 }
+# contains settings for rest_auth
+REST_AUTH = {
+    'REGISTER_SERIALIZER': 'user_management.serializers.CustomRegistrationSerializer',
+}
+
 
 # CORS CONFIG
 

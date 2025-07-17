@@ -19,6 +19,11 @@ class User(AbstractUser):
 
     def __str__(self) -> str:
         return self.email
+    
+    def set_full_name(self, full_name):
+        parts = full_name.strip().split()
+        self.first_name = parts[0]
+        self.last_name = ' '.join(parts[1:]) if len(parts) > 1 else ''
 
 
 class UserProfile(models.Model):
