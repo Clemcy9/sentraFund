@@ -16,7 +16,14 @@ print('now in prod env settings')
 if not DEBUG:    # Tell Django to copy static assets into a path called `staticfiles` (this is specific to Render)
     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'mail.privateemail.com'  # or 'smtp.privateemail.com' or yahoo 'smtp.mail.yahoo.com'
+EMAIL_PORT = 465
+EMAIL_USE_TLS = False
+EMAIL_USE_SSL = True
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER_NAMECHEAP')
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD_NAMECHEAP')
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 DATABASES = {
     'default-style': {
