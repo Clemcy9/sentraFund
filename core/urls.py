@@ -39,5 +39,6 @@ urlpatterns = [
         name='account_confirm_email',
     ),
     path('api/auth/registration/', include('dj_rest_auth.registration.urls')), # signup
+    path('api/dj-rest-auth/', include('django.contrib.auth.urls')),
     # path('accounts/', include('user_management.urls'))
 ]
