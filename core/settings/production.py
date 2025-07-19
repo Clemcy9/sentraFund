@@ -37,8 +37,9 @@ DATABASES = {
             'sslmode': 'require'  # Optional for internal DBs
         }
     },
+    'default': dj_database_url.parse(os.getenv('DATABASE_LOCAL')),
 
-    'default': dj_database_url.parse(
+    'default1': dj_database_url.parse(
         os.getenv('DATABASE_URL'),
     )
 }
