@@ -2,7 +2,7 @@ from .base import *
 import dj_database_url
 
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'xxx3.onrender.com', '*']
+ALLOWED_HOSTS = ["*"]
 DEBUG = os.getenv('DJANGO_DEBUG')
 
 
@@ -39,7 +39,4 @@ DATABASES = {
     },
     'default': dj_database_url.parse(os.getenv('DATABASE_LOCAL')),
 
-    'default1': dj_database_url.parse(
-        os.getenv('DATABASE_URL'),
-    )
 }
