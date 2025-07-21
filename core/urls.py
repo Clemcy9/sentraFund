@@ -17,7 +17,7 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path, include
-from user_management.views import CustomConfirmEmailView
+from user_management.views import CustomConfirmEmailView, email_confirm_redirect, password_reset_confirm_redirect
 from drf_spectacular.views import (
     SpectacularAPIView,
     SpectacularSwaggerView,
@@ -25,20 +25,20 @@ from drf_spectacular.views import (
 )
 
 urlpatterns = [
+    path('admin/', admin.site.urls),
+
     # Schema generation and documentation views
     path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
     path('api/docs/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
     path('api/redoc/', SpectacularRedocView.as_view(url_name='schema'), name='redoc'),
 
-    path('admin/', admin.site.urls),
+    # auth views
     path('accounts/', include('allauth.urls')),
     path('api/auth/', include('dj_rest_auth.urls')), # login, logout, password reset
-    path(
-        'api/auth/registration/account-confirm-email/<str:key>/',
-        CustomConfirmEmailView.as_view(),
-        name='account_confirm_email',
-    ),
+    path('api/auth/registration/account-confirm-email/<str:key>/', CustomConfirmEmailView.as_view(), name='account_confirm_email'),
     path('api/auth/registration/', include('dj_rest_auth.registration.urls')), # signup
-    path('api/dj-rest-auth/', include('django.contrib.auth.urls')),
-    # path('accounts/', include('user_management.urls'))
+    
+    # custom auth views
+    path("password/reset/confirm/<str:uidb64>/<str:token>/", password_reset_confirm_redirect, name="password_reset_confirm" ),
+    # path('api/user/', include('user_management.urls'))
 ]

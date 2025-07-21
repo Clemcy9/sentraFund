@@ -178,14 +178,20 @@ ACCOUNT_AUTHENTICATION_METHOD = 'username_email' #username, email, username_emai
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_USERNAME_REQUIRED = False
 # ACCOUNT_USER_MODEL_USERNAME_FIELD =None
-ACCOUNT_EMAIL_VERIFICATION = 'none' #optional, none or mandatory
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory' #optional, none or mandatory
 ACCOUNT_UNIQUE_EMAIL = True
+
+BASE_URL = os.getenv("BASE_URL")
+EMAIL_CONFIRM_REDIRECT_URL = f"{BASE_URL}/email/confirm/"
+PASSWORD_RESET_CONFIRM_REDIRECT_URL = F"{BASE_URL}/password-reset/confirm/"
+PASSWORD_RESET_CONFIRM_URL = "password/reset/confirm/{uid}/{token}/"
 
 ACCOUNT_FORMS = {
     'login': 'user_management.forms.CustomLoginForm',
     # 'signup':'user_management.forms.CustomSignupForm',
 }
 # SOCIALACCOUNT_ADAPTER = 'myapp.adapters.CustomSocialAccountAdapter'
+ACCOUNT_ADAPTER = 'user_management.adapter.CustomAccountAdapter'
 
 # Provider specific settings
 SOCIALACCOUNT_PROVIDERS = {
@@ -230,6 +236,7 @@ REST_FRAMEWORK = {
 # contains settings for rest_auth
 REST_AUTH = {
     'REGISTER_SERIALIZER': 'user_management.serializers.CustomRegistrationSerializer',
+    
 }
 
 
