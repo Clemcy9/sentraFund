@@ -43,5 +43,5 @@ urlpatterns = [
     # path('api/user/', include('user_management.urls'))
 
     # investment api
-    path('api/investment/', include('investment.urls'), name='investment')
+    path('api/investment/', include('investment.urls'), name='investment'),
 ]

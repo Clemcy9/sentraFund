@@ -7,5 +7,5 @@ router  = DefaultRouter()
 router.register(r'transaction', TransactionsViewSet)
 
 urlpatterns = [
-    '', include(router.urls)
+    path('', include(router.urls))
 ]

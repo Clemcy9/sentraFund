@@ -10,7 +10,7 @@ class Wallet(models.Model):
     last_updated = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return f"{self.user.get_fullname()} - Balance: {self.balance}"
+        return f"{self.user.get_full_name()} - Balance: {self.balance}"
 
 class Transaction(models.Model):
     TRANSACTION_TYPES = (
@@ -33,7 +33,7 @@ class Transaction(models.Model):
     processed_at = models.DateTimeField(auto_now=True, blank=True, null=True)
 
     def __str__(self):
-        return f"{self.user.get_fullname()} - {self.transaction_type} - {self.amount} ({self.status})"
+        return f"{self.user.get_full_name()} - {self.transaction_type} - {self.amount} ({self.status})"
 
 class InvestmentPlan(models.Model):
     name = models.CharField(max_length=100)
