@@ -38,6 +38,7 @@ def create_user_investment(sender, instance, created, **kwargs):
     if created:
         if not hasattr(instance, 'userinvestment'):
             try:
+                print(f'referenc_plan: {instance.reference_plan}')
                 investment_plan = InvestmentPlan.objects.get(name = instance.reference_plan)
                 UserInvestment.objects.create(user=instance.user, plan=investment_plan, transaction=instance, due_date = default_due_date(investment_plan.duration_days))
             except:
