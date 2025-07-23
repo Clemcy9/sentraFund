@@ -236,6 +236,7 @@ REST_FRAMEWORK = {
 # contains settings for rest_auth
 REST_AUTH = {
     'REGISTER_SERIALIZER': 'user_management.serializers.CustomRegistrationSerializer',
+    'USER_DETAILS_SERIALIZER':'user_management.serializers.CustomUserDetailSerializer',
     
 }
 
