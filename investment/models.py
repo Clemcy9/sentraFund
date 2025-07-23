@@ -50,12 +50,13 @@ class InvestmentPlan(models.Model):
 class UserInvestment(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     plan = models.ForeignKey(InvestmentPlan, on_delete=models.CASCADE)
-    amount = models.DecimalField(max_digits=12, decimal_places=2)
+    # amount = models.DecimalField(max_digits=12, decimal_places=2)
+    transaction = models.OneToOneField(Transaction, on_delete=models.CASCADE, null=True, blank=True)
     start_date = models.DateTimeField(auto_now_add=True)
-    end_date = models.DateTimeField()
+    due_date = models.DateTimeField()
     is_active = models.BooleanField(default=True)
     payout_amount = models.DecimalField(max_digits=12, decimal_places=2, null=True, blank=True)
     payout_done = models.BooleanField(default=False)
 
     def __str__(self):
-        return f"{self.user.username} - {self.plan.name} - ₦{self.amount}"
+        return f"{self.user.username} - {self.plan.name} - ₦{self.transaction.amount}"
