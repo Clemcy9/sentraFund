@@ -28,9 +28,9 @@ class Transaction(models.Model):
     transaction_type = models.CharField(max_length=10, choices=TRANSACTION_TYPES)
     amount = models.DecimalField(max_digits=12, decimal_places=2)
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='pending')
-    reference = models.CharField(max_length=100, unique=True)
+    # reference = models.CharField(max_length=100, unique=True)
     created_at = models.DateTimeField(auto_now_add=True)
-    processed_at = models.DateTimeField(blank=True, null=True)
+    processed_at = models.DateTimeField(auto_now=True, blank=True, null=True)
 
     def __str__(self):
         return f"{self.user.get_fullname()} - {self.transaction_type} - {self.amount} ({self.status})"
