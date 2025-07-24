@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.permissions import IsAuthenticated
-from .models import Transaction
-from .serializers import TransactionSerializer
+from .models import Transaction, Wallet
+from .serializers import TransactionSerializer, WalletSerializer
 
 
 class TransactionsViewSet(ModelViewSet):
@@ -20,3 +20,15 @@ class TransactionsViewSet(ModelViewSet):
     def perform_create(self, serializer):
         # return super().perform_create(serializer)
         serializer.save(user=self.request.user)
+
+class WalletViewSet(ModelViewSet):
+    queryset = Wallet.objects.all()
+    serializer_class = WalletSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        # return super().get_queryset()
+        user = self.request.user
+        if user.is_superuser:
+            return self.queryset #all transactions if admin view
+        return self.queryset.filter(user = user) 
